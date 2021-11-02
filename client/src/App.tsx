@@ -1,9 +1,11 @@
-import React from 'react';
 import './App.css';
+import ToDoList from './components/to-do-list';
 
 function App() {
-  return <div className="App">
-    </div>;
+  const CLASS_NAME = "App"
+  return <div className={CLASS_NAME}>
+    <ToDoList />
+  </div>;
 }
 
 
