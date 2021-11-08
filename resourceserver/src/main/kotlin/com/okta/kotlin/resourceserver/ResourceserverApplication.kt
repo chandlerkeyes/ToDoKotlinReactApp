@@ -25,6 +25,22 @@ class ResourceServerApplication {
 			done = false
 		)
 		)
+
+		repository.save(
+			ToDoModel(
+				userId = 117,
+				description = "Wash the dog",
+				done = false
+			)
+		)
+
+		repository.save(
+			ToDoModel(
+				userId = 118,
+				description = "Wash the dog",
+				done = false
+			)
+		)
 	}
 }
 

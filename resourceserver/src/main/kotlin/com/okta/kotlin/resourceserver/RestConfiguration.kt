@@ -9,7 +9,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 @Configuration
 open class RestConfiguration : RepositoryRestConfigurer {
     override fun configureRepositoryRestConfiguration(config: RepositoryRestConfiguration?, cors: CorsRegistry?) {
+        cors?.addMapping("/api/**")?.allowedMethods("PUT", "DELETE", "GET", "POST")
         config?.exposeIdsFor(ToDoModel::class.java)
         config?.setBasePath("/api");
     }
+
 }
