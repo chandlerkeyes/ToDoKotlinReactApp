@@ -1,5 +1,11 @@
+export type CreateToDo = {
+  userId: number,
+  description: string,
+  done: boolean
+}
+
 class Api {
-  // BASE_URL = "http://localhost:8080/api/todos"
+  private BASE_URL = "http://localhost:8080/api/todos"
   authToken?: String
   constructor(authToken?: string) {
     this.authToken = authToken;
@@ -18,13 +24,14 @@ class Api {
     } : headers;
   }
 
-  // async create(toDo: ToDo) {
-  //     return await fetch(this.BASE_URL, {
-  //       method: 'POST',
-  //       headers: this.createHeaders(),
-  //       body: JSON.stringify(toDo)
-  //     });
-  //   }
+  async create(toDo: CreateToDo) {
+    console.log("creating!!!");
+      return await fetch(this.BASE_URL, {
+        method: 'POST',
+        headers: this.createHeaders(),
+        body: JSON.stringify(toDo)
+      });
+    }
 
   // async updateToDo(toDo: ToDo) {
   //     const toDoId = toDo.id;
@@ -36,14 +43,10 @@ class Api {
   // }
 
   async delete(toDoId: number) {
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    };
     try {
-      return await fetch(`http://localhost:8080/api/todos/${toDoId}`, {
+      return await fetch(`${this.BASE_URL}/${toDoId}`, {
         method: 'DELETE',
-        headers: headers
+        headers: this.createHeaders()
       });
     } catch (e) {
       console.error("Something went wrong: ", e);
@@ -53,7 +56,7 @@ class Api {
 
   async getAllToDos() {
     try {
-      return await fetch("http://localhost:8080/api/todos", {
+      return await fetch(this.BASE_URL, {
         method: 'GET',
         headers: this.createHeaders()
       });
