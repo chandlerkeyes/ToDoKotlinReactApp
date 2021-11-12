@@ -10,9 +10,6 @@ export type ToDo = {
 
 type ToDoList = ToDo[];
 
-
-// TO DO: Add update, delete, and create functionality
-
 type Props = {
     api: Api
 }
@@ -21,10 +18,9 @@ function ToDo(remove: (toDoId: number) => void, toDoList: ToDo[]) {
     return toDoList.map((toDo: ToDo) => {
         return <div key={toDo.id}>
             <p>{toDo.description}</p>
-            <input type="checkbox" name="done" id={`done-${toDo.id}`} checked={toDo.done} />
-            <button onClick={() => {
+            <input type="checkbox" name="done" id={`done-${toDo.id}`} checked={toDo.done} onChange={() => {
                 remove(toDo.id)
-            }}>Remove</button>
+            }}/>
         </div>
     })
 }
@@ -34,9 +30,7 @@ function ToDoList(props: Props) {
     const [toDoList, setToDoList] = useState<ToDoList>([]);
     const [showError, setShowError] = useState<Boolean>(false);
 
-
     function handleSubmit(event: any) {
-        event.preventDefault();
         const value = event.target[0].value;
         if (value) {
             const toDo: CreateToDo = {
@@ -45,6 +39,7 @@ function ToDoList(props: Props) {
                 done: false
             }
             props.api.create(toDo)
+            fetchTodos();
         }
     }
 
