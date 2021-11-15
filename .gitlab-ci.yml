@@ -6,4 +6,5 @@ build-application:
   stage: build
   script:
     - echo "Building application"
+    - cd client/
     - npm run build
