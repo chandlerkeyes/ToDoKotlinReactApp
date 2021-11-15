@@ -8,4 +8,5 @@ build-application:
   script:
     - echo "Building application"
     - cd client/
+    - npm install
     - npm run build
