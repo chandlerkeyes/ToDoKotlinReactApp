@@ -3,6 +3,7 @@ stages:
   - test
 
 build-application:
+  image: node:latest
   stage: build
   script:
     - echo "Building application"
