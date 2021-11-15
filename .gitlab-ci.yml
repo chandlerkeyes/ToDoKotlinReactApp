@@ -1,0 +1,9 @@
+stages:
+  - build
+  - test
+
+build-application:
+  stage: build
+  script:
+    - echo "Building application"
+    - npm run build
