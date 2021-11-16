@@ -10,6 +10,11 @@ import org.springframework.context.annotation.Bean
 class ResourceServerApplication {
 	@Bean
 	fun run(repository: ToDoRepository) = ApplicationRunner {
+		repository.save(ToDoModel(
+			userId = 100,
+			description = "Wash dog",
+			done = false
+		))
 	}
 }
 
