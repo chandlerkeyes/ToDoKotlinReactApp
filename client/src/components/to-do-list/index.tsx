@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import Api, { CreateToDo } from '../../api';
 
-export type ToDo = {
+export type ToDoRecord = {
     id: number,
     userId: number,
     description: string,
     done: boolean,
 }
 
-type ToDoList = ToDo[];
+type ToDoRecords = ToDoRecord[];
 
 type Props = {
     api: Api
 }
 
-function ToDo(remove: (toDoId: number) => void, toDoList: ToDo[]) {
-    return toDoList.map((toDo: ToDo) => {
+function ToDo(remove: (toDoId: number) => void, toDoList: ToDoRecord[]) {
+    return toDoList.map((toDo: ToDoRecord) => {
         return <div key={toDo.id}>
             <p>{toDo.description}</p>
             <input type="checkbox" name="done" id={`done-${toDo.id}`} checked={toDo.done} onChange={() => {
@@ -27,7 +27,7 @@ function ToDo(remove: (toDoId: number) => void, toDoList: ToDo[]) {
 
 function ToDoList(props: Props) {
     const [isLoading, setIsLoading] = useState<Boolean>(true);
-    const [toDoList, setToDoList] = useState<ToDoList>([]);
+    const [toDoList, setToDoList] = useState<ToDoRecords>([]);
     const [showError, setShowError] = useState<Boolean>(false);
 
     function handleSubmit(event: any) {
@@ -50,7 +50,7 @@ function ToDoList(props: Props) {
         }
         else {
             setShowError(false)
-            let updatedToDoList = toDoList.filter((toDo: ToDo) => toDo.id !== id)
+            let updatedToDoList = toDoList.filter((toDo: ToDoRecord) => toDo.id !== id)
             setToDoList(updatedToDoList)
         }
     }
@@ -72,7 +72,7 @@ function ToDoList(props: Props) {
 
     useEffect(() => {
         fetchTodos()
-    }, [])
+    })
 
     if (showError) {
         return <p>Something went wrong, please try again later.</p>
