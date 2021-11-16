@@ -10,3 +10,11 @@ build-application:
     - cd client/
     - npm install
     - npm run build
+
+test-application:
+  image: node:16
+  stage: test
+  script:
+    - echo "test application"
+    - npm run test
+
