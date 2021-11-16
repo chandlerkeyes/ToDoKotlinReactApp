@@ -16,5 +16,6 @@ test-application:
   stage: test
   script:
     - echo "test application"
+    - cd client/
     - npm run test
 
