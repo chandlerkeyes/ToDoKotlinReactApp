@@ -17,5 +17,6 @@ test-application:
   script:
     - echo "test application"
     - cd client/
+    - npm install
     - npm run test
 
