@@ -1,9 +1,10 @@
+image: node:16
+
 stages:
   - build
   - test
 
 build-application:
-  image: node:16
   stage: build
   script:
     - echo "Building application"
@@ -12,7 +13,6 @@ build-application:
     - npm run build
 
 test-application:
-  image: node:16
   stage: test
   script:
     - echo "test application"
